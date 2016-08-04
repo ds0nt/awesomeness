@@ -35,7 +35,7 @@ lafuzz = "bash -c fuzzy-search"
 
 -- THEME
 -- default theme
-beautiful.init(awful.util.getdir("config") .. "/themes/current_theme/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/current_theme/theme.lua")
 
 
 -- KEYBINDED COMMANDS (see settings/custom_binds.lua)
