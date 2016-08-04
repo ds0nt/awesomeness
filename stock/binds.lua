@@ -4,9 +4,9 @@ local menubar = require("menubar")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
-    -- awful.button({ }, 4, awful.tag.viewnext),
-    -- awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 4, awful.tag.viewnext),
+    awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -17,20 +17,20 @@ globalkeys = awful.util.table.join(globalbinds,
     awful.key({ modkey, "Control" }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "Up",
+    awful.key({ modkey,           }, "Down",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "Down",
+    awful.key({ modkey,           }, "Up",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "Up", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "Down", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ modkey, "Shift"   }, "Down", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ modkey, "Shift"   }, "Up", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, }, "Right", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, }, "Left", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
