@@ -1,4 +1,5 @@
 local awful = require("awful")
+local naughty = require("naughty")
 
 -- xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'
 local XF86AudioLowerVolume = "#122"
@@ -8,7 +9,7 @@ local XF86AudioPlay = "#172"
 local XF86AudioNext = "#171"
 local XF86Sleep = "#150"
 local XF86AudioMute = "#121"
-
+local Print = "#107"
 local numpad = { "#87", "#88", "#89", "#83", "#84", "#85", "#79", "#80", "#81" }
 local alt = "Mod1"
 local mod = "Mod4"
@@ -31,7 +32,18 @@ globalkeys = awful.util.table.join(globalkeys,
 
     awful.key({ mod, }, "w", function () mymainmenu:show() end),
 
-    awful.key({ mod, }, "s", function () awful.util.spawn("scrot", "-s") end),
+    awful.key({ }, Print, function ()
+      local err = awful.util.spawn_with_shell("scrot -u")
+      if err then
+        naughty.notify({
+         preset = naughty.config.presets.critical,
+         title = "Error taking screenshot:" .. err,
+         text = awesome.startup_errors })
+      end
+    end),
+    awful.key({ }, XF86AudioPlay, function ()
+      awful.util.spawn("bash -ic \"cppw\"")
+    end),
 
     awful.key({ mod, }, "Tab",
         function ()
